@@ -26,15 +26,19 @@ Provision a virtual box using vagrant/chef-solo.
 - Clone the git repository
 
 - Install the omnibus plugin using
+	
 	$ vagrant plugin install vagrant-omnibus
 
 - Install the vagrant-berkshelf plugin using
+   	
    	$ vagrant plugin install vagrant-berkshelf
 
 - Install the search cookbook and the required dependencies:
+	
 	$ berks install
 
 - Start the provisioning
+	
 	$ vagrant up
 
 After provisioning:
