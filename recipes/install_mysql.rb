@@ -7,10 +7,12 @@
 # This work is licensed under the Creative Commons Attribution 4.0 International License. 
 # To view a copy of this license, visit http://creativecommons.org/licenses/by/4.0/.
 
+log 'Creating database. Root password: #{node["db"]["initialrootpw"]}. '
+
 mysql_service 'default' do
   port '3306'
   version '5.7'
-  initial_root_password '#{node["db"]["initialrootpw"]}'
+  initial_root_password 'mysqlvirtual'
   action [:create, :start]
 end
 
