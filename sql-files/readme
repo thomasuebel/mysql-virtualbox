@@ -1,0 +1,1 @@
+All files within this folder will be accessible from within the vagrant box as "/var/sql-files".
