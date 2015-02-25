@@ -10,12 +10,16 @@
 mysql_service 'default' do
   port '3306'
   version '5.7'
-  initial_root_password 'mysqlvirtual'
+  initial_root_password '#{node["db"]["initialrootpw"]}'
   action [:create, :start]
 end
 
-mysql_config 'default' do
-  source 'mysite.cnf.erb'
-  notifies :restart, 'mysql_service[default]'
-  action :create
+node['db']['schemas'].each do |schema|
+  sql = "CREATE SCHEMA #{schema} CHARACTER SET utf8; \
+       GRANT ALL PRIVILEGES ON #{schema}.* TO '#{schema}'@'localhost' IDENTIFIED BY '#{schema}'; \
+       GRANT ALL PRIVILEGES ON #{schema}.* TO '#{schema}'@'%' IDENTIFIED BY '#{schema}';"
+  execute "create #{schema} schema" do
+    command "mysql --user=root --password=#{node["db"]["initialrootpw"]} --execute=\"#{sql}\""
+    not_if "mysql --user=#{schema} --password=#{schema} --execute='' #{schema}"
+  end
 end

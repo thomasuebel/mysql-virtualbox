@@ -16,7 +16,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     config.vm.synced_folder "./sql-files", "/var/sql-files"
 
     config.vm.provision "chef_solo" do |chef|
-        chef.log_level = :warn
+        chef.log_level = :debug
         chef.add_recipe "mysql_virtual_host::install_mysql"
     end
 
