@@ -1,0 +1,19 @@
+#
+# Playbook Name:: install_mysql
+#
+# This work is licensed under the Creative Commons Attribution 4.0 International License. 
+# To view a copy of this license, visit http://creativecommons.org/licenses/by/4.0/.
+---
+- hosts: all
+  vars:
+    http_port: 80
+    max_clients: 200
+  tasks:
+  - name: install latest version of mysql
+    yum: pkg=mysql-server state=latest
+  - name: install mysql client
+    yum: pkg=mysql state=latest
+  - name: "Ensure mysqld started"
+    service: name=mysqld state=started
+  - script: ./create_db.sh
+
