@@ -3,7 +3,7 @@
 
 VAGRANTFILE_API_VERSION = "2"
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
-    config.vm.box = "chef/centos-6.5"
+    config.vm.box = "bento/centos-6.7"
     config.vm.hostname = "mysql-box"
     config.vm.network "private_network", ip: "192.168.252.101"
     config.vm.network "forwarded_port", guest: 3306, host: 13306

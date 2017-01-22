@@ -4,7 +4,7 @@ Provision a virtual box using Vagrant/Ansible.
 
 ### Following spices included
 
-- CentOS 6.5
+- CentOS 6.7
 - MySQL
 
 ### Requirements
@@ -36,4 +36,3 @@ For example you can connect your application with the jdbc string
  
  
 SSH into the Vagrant box using vagrant/vagrant credentials (d'oh)
-
